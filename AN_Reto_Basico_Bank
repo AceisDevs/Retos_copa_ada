@@ -1,0 +1,56 @@
+# 🔴 RETO 1: El Banco con Problemas
+
+**Dificultad:** ⭐ Básico  
+
+## 🧾 Contexto
+El **Banco Nacional** ha contratado a un programador junior para implementar su sistema de cuentas bancarias.  
+Sin embargo, el código tiene varios errores que hacen que el sistema falle.  
+
+Como experto en **Programación Orientada a Objetos (POO)**, tu trabajo es encontrar y corregir **EXACTAMENTE 5 errores** relacionados con este paradigma.
+
+
+## 🎯 Objetivo
+Encuentra y corrige los **5 errores** en el código.  
+Los errores están relacionados con:
+
+- ❌ Uso incorrecto de atributos de instancia  
+- 🧬 Problemas con herencia  
+- 🧱 Errores en el constructor de clases derivadas  
+- ⚙️ Mal uso de métodos  
+- 🧩 Problemas de lógica en operaciones  
+
+📝 Código Problemático
+
+
+class CuentaBancaria:
+    def __init__(self, titular, saldo):
+        self.titular = titular
+        self.saldo = saldo
+    
+    def depositar(self, monto):
+        saldo += monto
+        return saldo
+    
+    def retirar(self, monto):
+        if monto > self.saldo:
+            print("Saldo insuficiente")
+        self.saldo -= monto
+        return self.saldo
+
+class CuentaAhorros(CuentaBancaria):
+    def __init__(self, titular, saldo, tasa_interes):
+        self.titular = titular
+        self.saldo = saldo
+        self.tasa_interes = tasa_interes
+    
+    def aplicar_interes(self):
+        interes = self.saldo * self.tasa_interes
+        self.depositar(interes)
+
+# Prueba del sistema
+cuenta = CuentaAhorros("Ana", 1000, 0.05)
+cuenta.depositar(500)
+print(f"Saldo después de depósito: {cuenta.saldo}")
+cuenta.aplicar_interes()
+print(f"Saldo después de interés: {cuenta.saldo}")
+

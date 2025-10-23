@@ -1,0 +1,110 @@
+📋 Contexto
+Una empresa de seguridad informática desarrolló un sistema de archivos con control de acceso por niveles.
+El código pasó por varios programadores y ahora está lleno de bugs. El sistema debería funcionar pero tiene múltiples errores de sintaxis, lógica y diseño POO que impiden su ejecución.
+
+🎯 Objetivo
+Eres el desarrollador senior asignado para hacer debugging. Debes:
+
+Encontrar TODOS los errores en el código
+Corregirlos manteniendo la estructura de clases
+Asegurarte que el sistema funcione correctamente con los tests
+Documentar cada error encontrado
+
+🔍 Pistas
+El código tiene errores relacionados con:
+
+Orden de parámetros en métodos
+Iteración sobre diccionarios
+Decoradores mal implementados
+Manejo de excepciones
+Acceso a atributos
+Al menos 8-10 errores en total
+
+📝 Código con Bugs
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+class Usuario:
+    def __init__(self, nombre, nivel_acceso):
+        self._nombre = nombre
+        self._nivel_acceso = nivel_acceso
+    
+    def get_nivel(self):
+        return self._nivel_acceso
+
+class SistemaArchivos:
+    def __init__(self):
+        self.archivos = {}
+    
+    def crear_archivo(self, nombre, contenido, nivel_requerido):
+        self.archivos[nombre] = {
+            'contenido': contenido,
+            'nivel': nivel_requerido
+        }
+    
+    def leer_archivo(usuario, self, nombre):
+        if nombre not in self.archivos:
+            raise FileNotFoundError(f"Archivo {nombre} no existe")
+        
+        archivo = self.archivos[nombre]
+        if usuario.get_nivel() >= archivo['nivel']:
+            return archivo['contenido']
+        else:
+            raise PermissionError("Acceso denegado")
+    
+    def listar_archivos(self, usuario):
+        accesibles = []
+        for nombre, datos in self.archivos:
+            if usuario.get_nivel() >= datos['nivel']:
+                accesibles.append(nombre)
+        return accesibles
+
+# Decorador para logging de accesos
+def log_acceso(func):
+    def wrapper(self, *args, **kwargs):
+        print(f"Accediendo a {func.name}")
+        resultado = func(self, args, kwargs)
+        print(f"Acceso completado")
+        return resultado
+    return wrapper
+
+class SistemaArchivosSeguro(SistemaArchivos):
+    @log_acceso
+    def leer_archivo(self, usuario, nombre):
+        return super().leer_archivo(usuario, nombre)
+
+# ====== PRUEBAS QUE DEBEN FUNCIONAR ======
+if __name__ == "__main__":
+    # Crear usuarios
+    admin = Usuario("Admin", 5)
+    invitado = Usuario("Invitado", 1)
+    
+    # Crear sistema
+    sistema = SistemaArchivosSeguro()
+    
+    # Crear archivos
+    sistema.crear_archivo("secreto.txt", "Información clasificada TOP SECRET", 5)
+    sistema.crear_archivo("publico.txt", "Información de acceso público", 1)
+    sistema.crear_archivo("interno.txt", "Documentos internos", 3)
+    
+    # Prueba 1: Admin puede leer archivo secreto
+    print("=== PRUEBA 1: Admin lee archivo secreto ===")
+    contenido = sistema.leer_archivo(admin, "secreto.txt")
+    print(f"Contenido: {contenido}\n")
+    
+    # Prueba 2: Invitado solo ve archivos públicos
+    print("=== PRUEBA 2: Archivos accesibles para invitado ===")
+    archivos_invitado = sistema.listar_archivos(invitado)
+    print(f"Archivos: {archivos_invitado}\n")
+    
+    # Prueba 3: Invitado NO puede leer archivo secreto
+    print("=== PRUEBA 3: Invitado intenta leer archivo secreto ===")
+    try:
+        sistema.leer_archivo(invitado, "secreto.txt")
+    except PermissionError as e:
+        print(f"✓ Error esperado: {e}\n")
+    
+    # Prueba 4: Leer archivo inexistente
+    print("=== PRUEBA 4: Leer archivo que no existe ===")
+    try:
+        sistema.leer_archivo(admin, "noexiste.txt")
+    except FileNotFoundError as e:
+        print(f"✓ Error esperado: {e}")
