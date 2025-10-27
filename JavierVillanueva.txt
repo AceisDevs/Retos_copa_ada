@@ -1,0 +1,65 @@
+Preguntas Copa Ada
+
+1. Diferencia entre una clase y un objeto
+
+a) La clase es la plantilla que se basa el objeto
+b) El objeto se crea primero
+c) La clase es creada a partir del objeto
+d) Son lo mismo
+ 
+Correcta: a
+
+2. ¿Que es una clase abstracta?
+
+a) Una clase común
+b) Clase que no permite crear objetos directamente
+c) Clase que solo abstrae los métodos de otra clase
+d) Clase que solo hereda de otras clases
+
+Correcta: b
+
+3. ¿Una clase puede heredar de otra super clase?
+
+a)Falso
+b)Verdadero
+
+Correcta: b
+
+4. ¿Existe un limite de arbol de herencia en python?
+
+a) No existe
+b) Sí existe
+c) El límite es de 7 niveles de herencia
+d) Solo se permite herencia simple, no múltiples niveles
+
+Correcta: a
+
+5. Un "constructor" es un método especial que se ejecuta:
+
+a) Cuando se destruye un objeto.
+b) Cuando un objeto lo llama
+c) Solo cuando se lo llama explícitamente.
+d) Al crear una instancia de la clase.
+
+Respuesta correcta: d
+
+6. El proceso de crear un nuevo objeto a partir de una clase se llama:
+
+a) Modularización
+b) Polimorfismo
+c) Instanciación
+d) Construcción
+
+Respuesta correcta: c
+
+
+
+
+
+
+
+
+
+
+
+
