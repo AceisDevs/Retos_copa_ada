@@ -1,0 +1,35 @@
+Ejercicio 1: 
+
+Implementa una clase abstracta MetodoPago con un método procesar_pago(monto). Crea subclases TarjetaCredito, Paypal y Ciptomoneda. Cada una debe implementar el método de forma diferente, luego simula un sistema que procese varios pagos de distintos tipos.
+
+Conceptos:
+
+Abstracción: MetodoPago define una interfaz común.
+
+Herencia: Cada método de pago extiende la clase base.
+
+Polimorfismo: El sistema puede procesar cualquier tipo de pago sin conocer su tipo específico.
+
+Ejercicio 2:
+
+Crea una clase abstracta Figura con un método area() y otro perimetro(). Luego crea clases concretas Circulo, Rectangulo y Triangulo que implementes estos métodos.
+
+Conceptos:
+
+Abstracción: La clase Figura define una interfaz común.
+
+Herencia: Las figuras concretas heredan de Figura.
+
+Polimorfismo: Puedes calcular área y perímetro sin importar el tipo de figura.
+
+Ejercicio 3: 
+
+Crea una clase abstracta Vehiculo con atributos como marca, modelo y un método abstracto acelerar(). Luego implementa las clases Auto, Moto y Bicicleta, que sobrescriban el método acelerar() con comportamientos distintos. Finalmente, crea una función que recorra una lista de vehículos y llame al método acelerar() en cada uno.
+
+Conceptos:
+
+Abstracción: Vehiculo define la estructura general.
+
+Herencia: Las subclases heredan de Vehiculo.
+
+Polimorfismo: El mismo método acelerar() tiene diferentes implementaciones según el tipo de vehículo.
