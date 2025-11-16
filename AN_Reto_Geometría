@@ -1,0 +1,136 @@
+📋 Contexto
+
+Una aplicación de diseño gráfico necesita un sistema para calcular áreas y perímetros de diferentes formas geométricas.
+El arquitecto del software diseñó la estructura base usando clases abstractas y herencia, pero dejó el trabajo incompleto. 
+Tu misión es completar la implementación siguiendo los principios de POO.
+
+🎯 Objetivo
+Completa el código faltante implementando:
+
+Clase Circulo: con cálculos de área (πr²) y perímetro (2πr)
+Clase Rectangulo: con base y altura, área y perímetro
+Clase Triangulo: usando la fórmula de Herón para el área
+Clase ColeccionFormas: para gestionar múltiples formas
+
+📐 Fórmulas Necesarias
+
+Área del círculo: π × radio²
+Perímetro del círculo: 2 × π × radio
+Área del rectángulo: base × altura
+Perímetro del rectángulo: 2 × (base + altura)
+Área del triángulo (Herón): √[s(s-a)(s-b)(s-c)] donde s = (a+b+c)/2
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+from abc import ABC, abstractmethod
+import math
+
+class Forma(ABC):
+    """Clase abstracta base para todas las formas geométricas"""
+    
+    @abstractmethod
+    def area(self):
+        """Calcula el área de la forma"""
+        pass
+    
+    @abstractmethod
+    def perimetro(self):
+        """Calcula el perímetro de la forma"""
+        pass
+    
+    def descripcion(self):
+        """Retorna una descripción formateada de la forma"""
+        return f"{self.__class__.__name__}: Área={self.area():.2f}, Perímetro={self.perimetro():.2f}"
+
+class Circulo(Forma):
+    """
+    TODO: Completar la clase Circulo
+    - Constructor que reciba el radio
+    - Validar que el radio sea positivo
+    - Implementar método area()
+    - Implementar método perimetro()
+    """
+    def __init__(self, radio):
+        pass
+    
+    def area(self):
+        pass
+    
+    def perimetro(self):
+        pass
+
+class Rectangulo(Forma):
+    """
+    TODO: Completar toda la clase Rectangulo
+    - Constructor que reciba base y altura
+    - Validar que base y altura sean positivos
+    - Implementar método area()
+    - Implementar método perimetro()
+    """
+    pass
+
+class Triangulo(Forma):
+    """
+    TODO: Completar toda la clase Triangulo
+    - Constructor que reciba los tres lados (a, b, c)
+    - Validar que los lados formen un triángulo válido (suma de dos lados > tercer lado)
+    - Implementar método area() usando fórmula de Herón
+    - Implementar método perimetro()
+    """
+    pass
+
+class ColeccionFormas:
+    """Gestiona una colección de formas geométricas"""
+    
+    def __init__(self):
+        self.formas = []
+    
+    def agregar(self, forma):
+        """
+        TODO: Agregar una forma a la colección
+        - Validar que el objeto sea una instancia de Forma
+        - Si no lo es, lanzar un TypeError con mensaje apropiado
+        """
+        pass
+    
+    def area_total(self):
+        """
+        TODO: Calcular la suma de las áreas de todas las formas
+        - Retornar 0 si no hay formas
+        """
+        pass
+    
+    def forma_mayor_area(self):
+        """
+        TODO: Retornar la forma con mayor área
+        - Si no hay formas, retornar None
+        - Usar una función lambda o método max() con key
+        """
+        pass
+
+# ====== PRUEBAS QUE DEBEN FUNCIONAR ======
+if __name__ == "__main__":
+    coleccion = ColeccionFormas()
+    
+    # Crear formas
+    circulo = Circulo(5)
+    rectangulo = Rectangulo(4, 6)
+    triangulo = Triangulo(3, 4, 5)
+    
+    # Agregar a la colección
+    coleccion.agregar(circulo)
+    coleccion.agregar(rectangulo)
+    coleccion.agregar(triangulo)
+    
+    # Mostrar resultados
+    print("=== FORMAS EN LA COLECCIÓN ===")
+    for forma in coleccion.formas:
+        print(forma.descripcion())
+    
+    print(f"\n Área total: {coleccion.area_total():.2f}")
+    print(f"Forma con mayor área: {coleccion.forma_mayor_area().descripcion()}")
+    
+    # Probar validación
+    try:
+        coleccion.agregar("No soy una forma")
+    except TypeError as e:
+        print(f"\n✓ Validación correcta: {e}")
